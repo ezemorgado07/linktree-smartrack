@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartRACK · Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:    #23264f;
+      --navy2:   #1a1d3a;
+      --orange:  #f49825;
+      --celeste: #5f7dbe;
+      --bg:      #f8f9fb;
+      --border:  #e2e4ed;
+      --muted:   #6b7280;
+      --text:    #1f2937;
+      --card:    #ffffff;
+    }
+    body.dark {
+      --bg:     #0d0f1a;
+      --border: #1e2235;
+      --muted:  #8b92a5;
+      --text:   #d1d5db;
+      --card:   #13162a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      transition: background 0.2s;
+    }
+
+    /* DARK TOGGLE */
+    .dark-toggle {
+      position: fixed; top: 20px; right: 20px;
+      display: flex; align-items: center; gap: 7px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-family: 'Montserrat', sans-serif; font-size: 12px;
+      font-weight: 600; color: var(--muted); cursor: pointer;
+      transition: all 0.15s; z-index: 100;
+    }
+    .dark-toggle:hover { border-color: var(--orange); color: var(--orange); }
+    .dark-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* CONTAINER */
+    .container {
+      width: 100%; max-width: 480px;
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+    }
+
+    /* AVATAR / LOGO */
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--celeste));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .avatar span {
+      font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -1px;
+    }
+    .avatar span em { color: var(--orange); font-style: normal; }
+
+    /* TITLE */
+    .title {
+      font-size: 24px; font-weight: 800; color: var(--navy);
+      letter-spacing: -0.5px; margin-bottom: 4px; text-align: center;
+    }
+    body.dark .title { color: #e2e8f0; }
+    .title span { color: var(--orange); }
+    .subtitle {
+      font-size: 13px; color: var(--muted); margin-bottom: 8px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(244,152,37,0.1); border: 1px solid rgba(244,152,37,0.3);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: 11px; font-weight: 600; color: var(--orange);
+      margin-bottom: 32px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* LINKS */
+    .links { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+    .link-card {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 20px;
+      text-decoration: none; color: var(--text);
+      transition: all 0.15s; position: relative; overflow: hidden;
+    }
+    .link-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--orange); border-radius: 14px 0 0 14px;
+      transform: scaleY(0); transition: transform 0.15s;
+    }
+    .link-card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,152,37,0.12); }
+    .link-card:hover::before { transform: scaleY(1); }
+    .link-card:hover .link-arrow { color: var(--orange); transform: translateX(3px); }
+
+    .link-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .link-icon svg { width: 22px; height: 22px; }
+
+    .link-info { flex: 1; min-width: 0; }
+    .link-title {
+      font-size: 14px; font-weight: 700; color: var(--navy);
+      margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    body.dark .link-title { color: #e2e8f0; }
+    .link-desc { font-size: 12px; color: var(--muted); }
+
+    .link-arrow {
+      color: var(--border); font-size: 18px; flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 32px; text-align: center;
+      font-size: 11px; color: var(--muted);
+    }
+    .footer a { color: var(--celeste); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<button class="dark-toggle" onclick="toggleDark()" id="darkBtn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+  Modo oscuro
+</button>
+
+<div class="container">
+
+  <div class="avatar"><span>S<em>R</em></span></div>
+  <div class="title">Smart<span>RACK</span></div>
+  <div class="subtitle">ePDU Inteligente · AucaTek</div>
+  <div class="badge"><div class="badge-dot"></div>Instituto Leonardo Murialdo · 2026</div>
+
+  <div class="links">
+
+    <!-- Portal web -->
+    <a class="link-card" href="https://aucateksmartrack.alwaysdata.net" target="_blank">
+      <div class="link-icon" style="background:rgba(35,38,79,0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#23264f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Portal web</div>
+        <div class="link-desc">Dashboard de monitoreo y control en tiempo real</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <!-- Documentación técnica -->
+    <a class="link-card" href="https://ezemorgado07.github.io/smartrack/smartrack-docs/" target="_blank">
+      <div class="link-icon" style="background:rgba(95,125,190,0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5f7dbe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Documentación técnica</div>
+        <div class="link-desc">Especificaciones, arquitectura y requerimientos del sistema</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <!-- Manual de usuario -->
+    <a class="link-card" href="https://github.com/ezemorgado07/smartrack/blob/main/SmartRACK_Manual_Usuario.pdf" target="_blank">
+      <div class="link-icon" style="background:rgba(244,152,37,0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f49825" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Manual de usuario</div>
+        <div class="link-desc">Guía completa de instalación, configuración y uso</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <!-- GANTT -->
+    <a class="link-card" href="https://docs.google.com/spreadsheets/d/1WdZP0VIrJ7KVCzTQELixGJa6TXat3nkQdQdKj_Piu2s" target="_blank">
+      <div class="link-icon" style="background:rgba(22,163,74,0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Cronograma GANTT</div>
+        <div class="link-desc">Planificación y seguimiento de tareas del proyecto</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <!-- FAQ -->
+    <a class="link-card" href="https://ezemorgado07.github.io/faq-smartrack/" target="_blank">
+      <div class="link-icon" style="background:rgba(139,92,246,0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Preguntas frecuentes</div>
+        <div class="link-desc">Todo lo que necesitás saber sobre SmartRACK</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <!-- GitHub -->
+    <a class="link-card" href="https://github.com/ezemorgado07/smartrack" target="_blank">
+      <div class="link-icon" style="background:rgba(0,0,0,0.06);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+      </div>
+      <div class="link-info">
+        <div class="link-title">Repositorio GitHub</div>
+        <div class="link-desc">Código fuente del firmware, backend y frontend</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <p>SmartRACK · AucaTek — innovate IT · <a href="mailto:info@aucatek.com.ar">info@aucatek.com.ar</a></p>
+  </div>
+
+</div>
+
+<script>
+  function toggleDark() {
+    const isDark = document.body.classList.toggle('dark');
+    const btn = document.getElementById('darkBtn');
+    if (isDark) {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Modo claro`;
+    } else {
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg> Modo oscuro`;
+    }
+    localStorage.setItem('dark', isDark ? '1' : '0');
+  }
+  if (localStorage.getItem('dark') === '1') toggleDark();
+</script>
+</body>
+</html>
