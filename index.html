@@ -60,14 +60,9 @@
     /* AVATAR / LOGO */
     .avatar {
       width: 80px; height: 80px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy), var(--celeste));
-      display: flex; align-items: center; justify-content: center;
+      object-fit: cover;
       margin-bottom: 16px;
     }
-    .avatar span {
-      font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -1px;
-    }
-    .avatar span em { color: var(--orange); font-style: normal; }
 
     /* TITLE */
     .title {
@@ -151,7 +146,7 @@
 
 <div class="container">
 
-  <div class="avatar"><span>S<em>R</em></span></div>
+  <img class="avatar" src="logo.png" alt="SmartRACK"/>
   <div class="title">Smart<span>RACK</span></div>
   <div class="subtitle">ePDU Inteligente · AucaTek</div>
   <div class="badge"><div class="badge-dot"></div>Instituto Leonardo Murialdo · 2026</div>
